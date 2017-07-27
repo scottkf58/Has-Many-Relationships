@@ -1,0 +1,37 @@
+CREATE USER has_many_users;
+CREATE DATABASE has_many_blogs WTIH OWNER has_many_users;
+
+DROP DATABASE IF EXISTS users;
+CREATE TABLE users (
+  id SERIAL NOT NULL,
+  username VARCHAR(90),
+  first_name VARCHAR(90),
+  last_name VARCHAR(90),
+  created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (id)
+);
+
+DROP DATABASE IF EXISTS users;
+CREATE TABLE posts (
+  id SERIAL NOT NULL,
+  title VARCHAR(180),
+  url VARCHAR(510),
+  content TEXT,
+  created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (id),
+  user_id int FOREIGN KEY REFERENCES users(user_id)
+);
+
+DROP DATABASE IF EXISTS users;
+CREATE TABLE comments (
+  id SERIAL NOT NULL,
+  body TEXT,
+  created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (id),
+  user_id int FOREIGN KEY REFERENCES users(user_id),
+  post_id int FOREIGN KEY REFERENCES posts(post_id)
+
+);
