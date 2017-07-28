@@ -40,10 +40,33 @@
 -- ON comments.posts_id = posts.id
 -- WHERE posts.created_at < '2015-01-01';
 
--- -- 9
+-- --9
+-- SELECT comments.*, posts.title AS post_title, posts.url AS post_url, comments.body AS comment_body
+-- FROM posts INNER JOIN comments
+-- ON comments.posts_id = posts.id
+-- WHERE posts.created_at > '2015-01-01';
+
+-- -- 10
 -- SELECT comments.*, posts.title AS post_title, posts.url AS post_url, comments.body AS comment_body
 -- FROM posts INNER JOIN comments
 -- ON comments.posts_id = posts.id
 -- WHERE comments.body LIKE '%USB%';
 
--- 10
+-- -- 11
+-- SELECT posts.title AS post_title, users.first_name, users.last_name, comments.body AS comment_body
+-- FROM users INNER JOIN posts
+-- ON posts.users_id = users.id
+-- INNER JOIN comments
+-- ON comments.posts_id = posts.id
+-- WHERE comments.body LIKE '%matrix%';
+
+-- 12
+SELECT users.first_name, users.last_name, comments.body AS comment_body
+FROM users INNER JOIN posts
+ON posts.users_id = users.id
+INNER JOIN comments
+ON comments.posts_id = posts.id
+WHERE comments.body LIKE '%SSL%' AND posts.content LIKE '%dolorum%';
+
+
+
