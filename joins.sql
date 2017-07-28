@@ -30,9 +30,9 @@
 -- WHERE users.created_at < '2015-01-01'
 
 -- -- 7
--- SELECT comments.*, posts.title AS post_title
--- FROM posts INNER JOIN comments
--- ON comments.posts_id = posts.id;
+-- SELECT comments.*, posts.title AS "Post Title"
+-- FROM comments INNER JOIN posts
+-- ON posts.id = comments.posts_id;
 
 -- --8
 -- SELECT comments.*, posts.title AS post_title, posts.url AS post_url, comments.body AS comment_body
@@ -68,15 +68,27 @@
 -- ON comments.posts_id = posts.id
 -- WHERE comments.body LIKE '%SSL%' AND posts.content LIKE '%dolorum%';
 
--- 13
-SELECT users.first_name AS post_author_first_name, users.last_name AS post_author_last_name, posts.title AS post_title, users.username AS comment_author_username, comments.body AS comment_body
-FROM users INNER JOIN posts
-ON posts.users_id = users.id
+-- -- 13
+-- SELECT users.first_name AS post_author_first_name, users.last_name AS post_author_last_name, posts.title AS post_title, users.username AS comment_author_username, comments.body AS comment_body
+-- FROM users INNER JOIN posts
+-- ON posts.users_id = users.id
+-- INNER JOIN comments
+-- ON comments.posts_id = posts.id
+-- WHERE (comments.body LIKE '%SSL%' AND posts.content LIKE '%nemo%')
+--   OR (comments.body LIKE '%firewall%' AND posts.content LIKE '%nemo%');
+
+
+-- Additional Queries
+
+SELECT COUNT(*) FROM posts
 INNER JOIN comments
 ON comments.posts_id = posts.id
-WHERE (comments.body LIKE '%SSL%' AND posts.content LIKE '%nemo%')
-  OR (comments.body LIKE '%firewall%' AND posts.content LIKE '%nemo%');
+WHERE posts.created_at > '2015-07-14'
 
+-- SELECT * FROM users
+-- INNER JOIN comments
+-- ON comments.users_id = users.id
+-- WHERE comments.body LIKE '%programming%';
 
 
 
